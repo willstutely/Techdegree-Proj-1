@@ -29,17 +29,11 @@ const quotes = [
   type: 'Movie',
   year: 1998
   },
-  {name: 'Boyd Crowder',
-  quote: "I’ve been accused of being a lot of things. Inarticulate ain’t one of ‘em.",
-  source: 'Justified',
-  type: 'TV Show',
-  year: 2014
-  },
-  {name: 'Lucille Bluth',
-  quote: "I don’t understand the question and I won’t respond to it.",
-  source: 'Arrested Development',
-  type: 'TV Show',
-  year: 2004
+  {name: 'Same Spade',
+  quote: "That’s good, because if you actually were as innocent as you pretend to be, we’d never get anywhere.",
+  source: 'The Maltese Falcon',
+  type: 'Movie',
+  year: 1941
   },
   {name: 'Reginald Rose',
   quote: "Well, it's not easy to stand alone against the ridicule of others. He gambled for support and I gave it to him.",
@@ -47,11 +41,35 @@ const quotes = [
   type: 'Movie',
   year: 1957
   },
-  {name: 'Cavlin',
-  quote: "I find my life is a lot easier the lower I keep everyone’s expectations.",
+  {name: 'Boyd Crowder',
+  quote: "I’ve been accused of being a lot of things. Inarticulate ain’t one of ‘em.",
   source: 'Justified',
   type: 'TV Show',
   year: 2014
+  },
+  {name: 'Raylan Givens',
+  quote: "What's next is entirely based on the next choice you make.",
+  source: 'Justified',
+  type: 'TV Show',
+  year: 2015
+  },
+  {name: 'Lucille Bluth',
+  quote: "I don’t understand the question and I won’t respond to it.",
+  source: 'Arrested Development',
+  type: 'TV Show',
+  year: 2004
+  },
+  {name: 'Cavlin',
+  quote: "You know, Hobbes, some days even my lucky rocket ship underpants don't help.",
+  source: 'Calvin and Hobbes',
+  type: 'Comic Strip',
+  year: 1994
+  },
+  {name: 'Cavlin',
+  quote: "I find my life is a lot easier the lower I keep everyone’s expectations.",
+  source: 'Calvin and Hobbes',
+  type: 'Comic Strip',
+  year: 1988
 }
 ]
 
@@ -60,7 +78,7 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 function getRandomQuote(arr) {
-  const randomNumber = Math.floor(Math.random() * arr.length) + 1;
+  const randomNumber = Math.ceil(Math.random() * arr.length) - 1;
   return arr[randomNumber].quote;
   }
 
