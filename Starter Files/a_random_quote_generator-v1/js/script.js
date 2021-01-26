@@ -77,26 +77,30 @@ const quotes = [
 /***
  * `getRandomQuote` function
 ***/
+
 function getRandomQuote(arr) {
   const randomNumber = Math.ceil(Math.random() * arr.length) - 1;
-  return arr[randomNumber].quote;
+  // console.log(arr[randomNumber])
+  return arr[randomNumber];
   }
-
-
-
-
-
-
-
 
 /***
  * `printQuote` function
 ***/
+
+
+
+
 function printQuote() {
-
-
+  const quote = getRandomQuote(quotes)
+  const message = `
+    <p class="quote">${quote.quote}</p>
+    <p class="source">${quote.name}<span class="citation">${quote.source}</span><span class="year">${quote.year}</span></p>
+  `;
+  return document.querySelector('div').innerHTML = message;
 
 }
+
 
 
 /***
