@@ -72,14 +72,14 @@ const quotes = [
   source: 'Calvin and Hobbes',
   type: 'Comic Strip',
   year: 1994,
-  image: "images/calvin.jpg"
+  image: "images/calvin.gif"
   },
   {name: 'Calvin',
   quote: "I find my life is a lot easier the lower I keep everyone’s expectations.",
   source: 'Calvin and Hobbes',
   type: 'Comic Strip',
   year: 1988,
-  image: "images/calvin.jpg"
+  image: "images/calvin.gif"
 }
 ]
 
@@ -104,7 +104,7 @@ function getRandomQuote(arr) {
 function printQuote() {
   const quote = getRandomQuote(quotes)
   const message = `
-    <a href="file:///Users/JonathanDrake%201/Desktop/TreeHouse/Projects/Techdegree-Proj-1/Starter%20Files/a_random_quote_generator-v1/me.jpg"><img src="file:///Users/JonathanDrake%201/Desktop/TreeHouse/Projects/Techdegree-Proj-1/Starter%20Files/a_random_quote_generator-v1/me.jpg" alt="profile"></a>
+    <img src="file:///Users/JonathanDrake%201/Desktop/TreeHouse/Projects/Techdegree-Proj-1/Starter%20Files/${quote.image}" alt="${quote.name}">
     <p class="quote">${quote.quote}</p>
     <p class="source">${quote.name}<span class="citation">${quote.source}</span><span class="year">${quote.year}</span></p>
   `;
