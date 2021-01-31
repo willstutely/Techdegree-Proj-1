@@ -104,7 +104,6 @@ function getRandomQuote(arr) {
     randomNumber = Math.ceil(Math.random() * arr.length) - 1;
   } else (!usedQuotes.includes(randomNumber))
     usedQuotes.push(randomNumber);
-  
   if (usedQuotes.length >= arr.length) {
     usedQuotes = [];
   }
