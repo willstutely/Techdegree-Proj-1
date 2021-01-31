@@ -92,6 +92,9 @@ const quotes = [
 /***
  * `getRandomQuote` function
 ***/
+// To prevent some quotes from being displayed more than once the randomly generated numbers are stored in an array
+// The getRandomQuote function checks the usedQuotes array for numbers already used and generates a new number if it has.
+// Once the usedQuotes array has been filled to equal the length of the quotes array it is erased and the cycle starts over.
 
 var usedQuotes = [];
 
@@ -111,7 +114,7 @@ function getRandomQuote(arr) {
 /***
  * `printQuote` function
  * Creates variable 'quote' which calls the 'getRandomQuote' function and passes the 'quotes' array as an argument
- * Uses the value of 'quote' to create a message, and then returns that message 
+ * Uses the value of 'quote' to create an interpolated message, and then returns that message 
 ***/
 
 function printQuote() {
@@ -126,6 +129,7 @@ function printQuote() {
 
 /***
  * 'autoRefresh' function
+ * Clears the interval using the clearInterval method
  * Calls the 'printQuote' function at an inteveral of 7 seconds
  * Credit: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
  * Source was linked in the Project study guide.
@@ -138,7 +142,7 @@ function autoRefresh() {
   autoRefresh = setInterval(printQuote, 6500);
   return [
     document.querySelector('div').innerHTML = autoRefresh,
-    printQuote(),
+    printQuote()
   ]
 }
 
