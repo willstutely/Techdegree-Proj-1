@@ -139,7 +139,7 @@ function printQuote() {
 
 function autoRefresh() {
   autoRefresh = clearInterval(autoRefresh);
-  autoRefresh = setInterval(printQuote, 6500);
+  autoRefresh = setInterval(printQuote, 7000);
   return [
     document.querySelector('div').innerHTML = autoRefresh,
     printQuote()
