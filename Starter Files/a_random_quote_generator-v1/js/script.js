@@ -87,19 +87,16 @@ const quotes = [
   year: 'Right Now',
   image: "images/me.jpg"
   }
-  
 ]
-
-
 
 /***
  * `getRandomQuote` function
 ***/
+
 var usedQuotes = [];
-var randomNumber;
 
 function getRandomQuote(arr) {
-  randomNumber = Math.ceil(Math.random() * arr.length) - 1;
+  let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
   if (usedQuotes.includes(randomNumber)) {
     randomNumber = Math.ceil(Math.random() * arr.length) - 1;
   } else (!usedQuotes.includes(randomNumber))
@@ -111,16 +108,11 @@ function getRandomQuote(arr) {
   return arr[randomNumber];
 }
 
-  
-
 /***
  * `printQuote` function
  * Creates variable 'quote' which calls the 'getRandomQuote' function and passes the 'quotes' array as an argument
  * Uses the value of 'quote' to create a message, and then returns that message 
 ***/
-
-
-
 
 function printQuote() {
   const quote = getRandomQuote(quotes)
@@ -130,7 +122,6 @@ function printQuote() {
     <p class="source">${quote.name}<span class="citation">${quote.source}</span><span class="year">${quote.year}</span></p>
   `;
   return document.querySelector('div').innerHTML = message; 
-
 }
 
 /***
@@ -139,8 +130,8 @@ function printQuote() {
  * Credit: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
  * Source was linked in the Project study guide.
  */
-var autoRefresh;
 
+ var autoRefresh;
 
 function autoRefresh() {
   autoRefresh = clearInterval(autoRefresh);
@@ -149,8 +140,6 @@ function autoRefresh() {
     document.querySelector('div').innerHTML = autoRefresh,
     printQuote(),
   ]
-  
-  
 }
 
 /***
@@ -159,13 +148,14 @@ function autoRefresh() {
  * Credit: https://www.geeksforgeeks.org/javascript-cleartimeout-clearinterval-method/
  * Found during basic web search for ideas
  */
-function pauseRefresh() {
+
+ function pauseRefresh() {
   autoRefresh = clearInterval(autoRefresh);
 }
 
 /***
  * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
+ * DO NOT CHANGE THE CODE BELOW!!...Changed the code to call the 'autoRefresh' function rather than the 'printQuote' function
 ***/
 
 document.getElementById('load-quote').addEventListener("click", autoRefresh, false);
