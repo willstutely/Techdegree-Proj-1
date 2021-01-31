@@ -79,23 +79,44 @@ const quotes = [
   source: 'Calvin and Hobbes',
   type: 'Comic Strip',
   year: 1988,
-  image: "images/calvin.gif"
-}
+  image: "images/calvin.gif",
+  },
+  {name: 'Me',
+  quote: "When you have zero coding experience learning JavaScript can make your brain feel like a bowl of bland oatmeal. But the satisfaction of struggling through various challenges and figuring them out is like adding brown sugar, apples and pecans on top.  Suddenly, every bite becomes delicious.",
+  source: 'My Own Brain',
+  year: 'Right Now',
+  image: "images/me.jpg"
+  }
+  
 ]
+
 
 
 /***
  * `getRandomQuote` function
 ***/
+var usedQuotes = [];
+var randomNumber;
 
 function getRandomQuote(arr) {
-  const randomNumber = Math.ceil(Math.random() * arr.length) - 1;
-  // console.log(arr[randomNumber])
-  return arr[randomNumber];
+  randomNumber = Math.ceil(Math.random() * arr.length) - 1;
+  if (usedQuotes.includes(randomNumber)) {
+    randomNumber = Math.ceil(Math.random() * arr.length) - 1;
+  } else (!usedQuotes.includes(randomNumber))
+    usedQuotes.push(randomNumber);
+  
+  if (usedQuotes.length >= arr.length) {
+    usedQuotes = [];
   }
+  return arr[randomNumber];
+}
+
+  
 
 /***
  * `printQuote` function
+ * Creates variable 'quote' which calls the 'getRandomQuote' function and passes the 'quotes' array as an argument
+ * Uses the value of 'quote' to create a message, and then returns that message 
 ***/
 
 
@@ -108,15 +129,44 @@ function printQuote() {
     <p class="quote">${quote.quote}</p>
     <p class="source">${quote.name}<span class="citation">${quote.source}</span><span class="year">${quote.year}</span></p>
   `;
-  return document.querySelector('div').innerHTML = message;
+  return document.querySelector('div').innerHTML = message; 
 
 }
 
+/***
+ * 'autoRefresh' function
+ * Calls the 'printQuote' function at an inteveral of 7 seconds
+ * Credit: https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
+ * Source was linked in the Project study guide.
+ */
+var autoRefresh;
 
+
+function autoRefresh() {
+  autoRefresh = clearInterval(autoRefresh);
+  autoRefresh = setInterval(printQuote, 6500);
+  return [
+    document.querySelector('div').innerHTML = autoRefresh,
+    printQuote(),
+  ]
+  
+  
+}
+
+/***
+ * 'pauseRefresh' function
+ * Uses the clearInterval() method to stop the setInterval() method in the 'autoRefresh' function
+ * Credit: https://www.geeksforgeeks.org/javascript-cleartimeout-clearinterval-method/
+ * Found during basic web search for ideas
+ */
+function pauseRefresh() {
+  autoRefresh = clearInterval(autoRefresh);
+}
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", autoRefresh, false);
+document.getElementById('slideshow-pause').addEventListener("click", pauseRefresh, false);
