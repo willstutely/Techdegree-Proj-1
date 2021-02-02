@@ -120,8 +120,8 @@ function getRandomQuote(arr) {
 function printQuote() {
   const quote = getRandomQuote(quotes)
   let message = '';
-  if (quote.image) {
-    message += `<img src="${quote.image}" alt="${quote.name}">
+  if (quote.image, quote.source) {
+    message += `<img src="${quote.image}" alt="${quote.source}">
     `;
   }
   if (quote.quote) {
