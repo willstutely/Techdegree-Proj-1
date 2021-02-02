@@ -121,12 +121,10 @@ function printQuote() {
   const quote = getRandomQuote(quotes)
   let message = '';
   if (quote.image, quote.source) {
-    message += `<img src="${quote.image}" alt="${quote.source}">
-    `;
+    message += `<img src="${quote.image}" alt="${quote.source}">`;
   }
   if (quote.quote) {
-    message += `<p class="quote">${quote.quote}</p>
-    `;
+    message += `<p class="quote">${quote.quote}</p>`;
   }
   if (quote.source) {
     message += `<p class="source">${quote.source}`;
@@ -135,8 +133,9 @@ function printQuote() {
     message += `<span class="citation">${quote.citation}</span>`;
   }
   if (quote.year) {
-    message += `<span class="year">${quote.year}</span></p>`;
+    message += `<span class="year">${quote.year}</span>`;
   }
+  message += `</p>`;
   return document.querySelector('div').innerHTML = message; 
 }
 
