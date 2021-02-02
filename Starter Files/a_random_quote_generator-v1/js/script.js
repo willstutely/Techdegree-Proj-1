@@ -121,7 +121,7 @@ function printQuote() {
   const quote = getRandomQuote(quotes)
   let message = '';
   if (quote.image) {
-    message += `<img src="file:///Users/JonathanDrake%201/Desktop/TreeHouse/Projects/Techdegree-Proj-1/Starter%20Files/${quote.image}" alt="${quote.name}">
+    message += `<img src="${quote.image}" alt="${quote.name}">
     `;
   }
   if (quote.quote) {
