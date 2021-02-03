@@ -81,66 +81,38 @@ const quotes = [
 
 /***
  * `getRandomQuote` function
+ * Uses Math.random() to generate a random number between 1 and the length of the parameter array and subtracts 1 to get the proper index position
 ***/
-// To prevent some quotes from being displayed more than once the randomly generated numbers are stored in an array
-// The getRandomQuote function checks the usedQuotes array for numbers already used and generates a new number if it has.
-// Once the usedQuotes array has been filled to equal the length of the quotes array it is erased and the cycle starts over.
 
-var indexNumbers = [];
-
-function populateIndexNumbers(arr) {
-  for (let i=0; i<arr.length; i++) {
-    indexNumbers.push(i)
-  }
-}
-
-populateIndexNumbers(quotes);
-
-
-function shuffleQuotes(arr) {
-  var j, x, i;
-  for (i=arr.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i +1));
-    x = arr[i];
-    arr[i] = arr[j];
-    arr[j] = x;
-  }
-  return arr;
-}
-
-shuffleQuotes(indexNumbers);
 
 function getRandomQuote(arr) {
-  for (let i=0; i<11; i++) {
-    return arr[i];
-  }
+  let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
+  return arr[randomNumber];
 }
 
-// if (i===arr.length) {
-    //   i = 0;
-    //   shuffleQuotes(arr);
-    // }
+/***
+ * 'randomRGB' function
+ * Uses the refactored code learned during the Refactor Challenge during the course section on Loops
+ * Random number range chosen to avoid less pleasing ranges of colors
+ */
 
 
+ const randomValue = () => Math.floor((Math.random() * 95) + 50);
 
-// function getRandomQuote(arr) {
-//   let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
- 
-
-//   return arr[randomNumber];
-// }
-
-
-
+ function randomRGB(value) {
+  const color = `rgb(${value()}, ${value()}, ${value()})`;
+  return color;
+ }
 
 /***
  * `printQuote` function
  * Creates variable 'quote' which calls the 'getRandomQuote' function and passes the 'quotes' array as an argument
- * Uses the value of 'quote' to create an interpolated message, and then returns that message 
+ * Uses the value of 'quote' to create an interpolated message through a series of conditional statements, and then returns that message 
 ***/
 
+
 function printQuote() {
-  const quote = getRandomQuote(indexNumbers)
+  const quote = getRandomQuote(quotes);
   let message = '';
   if (quote.image) {
     message += `<img src="${quote.image}" alt="${quote.source}">`;
@@ -154,7 +126,10 @@ function printQuote() {
     message += `<span class="year">${quote.year}</span>`;
   }
   message += `</p>`;
-  return document.querySelector('div').innerHTML = message; 
+  return [
+    document.querySelector('div').innerHTML = message,
+    document.body.style.backgroundColor = randomRGB(randomValue)
+  ] 
 }
 
 /***
@@ -169,23 +144,13 @@ function printQuote() {
 
 function autoRefresh() {
   autoRefresh = clearInterval(autoRefresh);
-  autoRefresh = setInterval(printQuote, 1500);
+  autoRefresh = setInterval(printQuote, 7000);
   return [
     document.querySelector('div').innerHTML = autoRefresh,
-    printQuote()
+    printQuote(),
   ]
 }
 
-/***
- * 'pauseRefresh' function
- * Uses the clearInterval() method to stop the setInterval() method in the 'autoRefresh' function
- * Credit: https://www.geeksforgeeks.org/javascript-cleartimeout-clearinterval-method/
- * Found during basic web search for ideas
- */
-
- function pauseRefresh() {
-  autoRefresh = clearInterval(autoRefresh);
-}
 
 /***
  * click event listener for the print quote button
@@ -193,4 +158,3 @@ function autoRefresh() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", autoRefresh, false);
-document.getElementById('slideshow-pause').addEventListener("click", pauseRefresh, false);
