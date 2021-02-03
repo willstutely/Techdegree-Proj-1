@@ -80,14 +80,51 @@ const quotes = [
 ]
 
 /***
+ * Create duplicate array
+ */
+
+let copyArray = [];
+
+function quotesCopy(arr) {
+  for (let i=0; i<arr.length; i++) {
+    copyArray.push(arr[i])
+  }
+}
+
+quotesCopy(quotes);
+
+/***
  * `getRandomQuote` function
  * Uses Math.random() to generate a random number between 1 and the length of the parameter array and subtracts 1 to get the proper index position
 ***/
 
-function getRandomQuote(arr) {
-  let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
-  return arr[randomNumber];
+// function shuffleQuotes(arr) {
+//   var j, x, i;
+//   for (i = arr.length - 1; i > 0; i--) {
+//       j = Math.floor(Math.random() * (i + 1));
+//       x = arr[i];
+//       arr[i] = arr[j];
+//       arr[j] = x;
+//   }
+//   return arr;
+// }
+
+// shuffleQuotes(copyArray);
+
+var selection = [];
+function selectQuote(arr) {
+  selection = [];
+  let randomNumber = Math.ceil((Math.random() * arr.length) -1);
+  selection = arr.splice(randomNumber, 1);
+  if (arr.length === 0) {
+    quotesCopy(quotes);
+    // shuffleQuotes(arr);
+  }
+  return selection;
 }
+
+
+
 
 /***
  * 'randomRGB' function
@@ -112,7 +149,8 @@ function getRandomQuote(arr) {
 ***/
 
 function printQuote() {
-  const quote = getRandomQuote(quotes);
+  selectQuote(copyArray);
+  const quote = selection[0];
   let message = '';
   if (quote.image) {
     message += `<img src="${quote.image}" alt="${quote.source}">`;
