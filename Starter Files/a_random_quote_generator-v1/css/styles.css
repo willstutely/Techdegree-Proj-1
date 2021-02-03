@@ -51,30 +51,6 @@ h1 {
   outline: none;
 }
 
-.slideshow-pause {
-  background-color: rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(5, 5, 5, 0.562);
-  width: 12em;
-  border-radius: 4px;
-  max-height: 35px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  transition: 0.5s;
-  margin: auto;
-  }
-
-.slideshow-pause:hover {
-  background-color:  rgba(105, 2, 2, 0.514);
-}
-
-/* .slideshow-play {
-  background-color:  rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  max-height: 50px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-} */
 .container {
   width: 90%;
   max-width: 1024px;
