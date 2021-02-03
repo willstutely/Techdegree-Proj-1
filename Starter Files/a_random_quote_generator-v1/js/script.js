@@ -86,20 +86,52 @@ const quotes = [
 // The getRandomQuote function checks the usedQuotes array for numbers already used and generates a new number if it has.
 // Once the usedQuotes array has been filled to equal the length of the quotes array it is erased and the cycle starts over.
 
-var usedQuotes = [];
+var indexNumbers = [];
+
+function populateIndexNumbers(arr) {
+  for (let i=0; i<arr.length; i++) {
+    indexNumbers.push(i)
+  }
+}
+
+populateIndexNumbers(quotes);
+
+
+function shuffleQuotes(arr) {
+  var j, x, i;
+  for (i=arr.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i +1));
+    x = arr[i];
+    arr[i] = arr[j];
+    arr[j] = x;
+  }
+  return arr;
+}
+
+shuffleQuotes(indexNumbers);
 
 function getRandomQuote(arr) {
-  let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
-  if (usedQuotes.includes(randomNumber)) {
-    randomNumber = Math.ceil(Math.random() * arr.length) - 1;
-  } else (!usedQuotes.includes(randomNumber))
-    usedQuotes.push(randomNumber);
-  
-  if (usedQuotes.length >= arr.length) {
-    usedQuotes = [];
+  for (let i=0; i<11; i++) {
+    return arr[i];
   }
-  return arr[randomNumber];
 }
+
+// if (i===arr.length) {
+    //   i = 0;
+    //   shuffleQuotes(arr);
+    // }
+
+
+
+// function getRandomQuote(arr) {
+//   let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
+ 
+
+//   return arr[randomNumber];
+// }
+
+
+
 
 /***
  * `printQuote` function
@@ -108,17 +140,13 @@ function getRandomQuote(arr) {
 ***/
 
 function printQuote() {
-  const quote = getRandomQuote(quotes)
+  const quote = getRandomQuote(indexNumbers)
   let message = '';
-  if (quote.image, quote.source) {
+  if (quote.image) {
     message += `<img src="${quote.image}" alt="${quote.source}">`;
   }
-  if (quote.quote) {
-    message += `<p class="quote">${quote.quote}</p>`;
-  }
-  if (quote.source) {
-    message += `<p class="source">${quote.source}`;
-  }
+  message += `<p class="quote">${quote.quote}</p>`;
+  message += `<p class="source">${quote.source}`;
   if (quote.citation) {
     message += `<span class="citation">${quote.citation}</span>`;
   }
@@ -141,7 +169,7 @@ function printQuote() {
 
 function autoRefresh() {
   autoRefresh = clearInterval(autoRefresh);
-  autoRefresh = setInterval(printQuote, 7000);
+  autoRefresh = setInterval(printQuote, 1500);
   return [
     document.querySelector('div').innerHTML = autoRefresh,
     printQuote()
