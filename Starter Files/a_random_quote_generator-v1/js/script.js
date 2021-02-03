@@ -84,7 +84,6 @@ const quotes = [
  * Uses Math.random() to generate a random number between 1 and the length of the parameter array and subtracts 1 to get the proper index position
 ***/
 
-
 function getRandomQuote(arr) {
   let randomNumber = Math.ceil(Math.random() * arr.length) - 1;
   return arr[randomNumber];
@@ -93,9 +92,9 @@ function getRandomQuote(arr) {
 /***
  * 'randomRGB' function
  * Uses the refactored code learned during the Refactor Challenge during the course section on Loops
- * Random number range chosen to avoid less pleasing ranges of colors
+ * The 'randomValue' arrow function creates a random number (with a number range selected to produce more pleasing colors)
+ * and is then passed as an argument for the 'randomRGB' function when it is called during the return of the 'printQuote' function
  */
-
 
  const randomValue = () => Math.floor((Math.random() * 95) + 50);
 
@@ -107,9 +106,10 @@ function getRandomQuote(arr) {
 /***
  * `printQuote` function
  * Creates variable 'quote' which calls the 'getRandomQuote' function and passes the 'quotes' array as an argument
- * Uses the value of 'quote' to create an interpolated message through a series of conditional statements, and then returns that message 
+ * Uses the value of 'quote' to create an interpolated message through a series of conditional statements, 
+ * and then returns that message 
+ * It also returns the functions that alter the background color using randomized RGB values
 ***/
-
 
 function printQuote() {
   const quote = getRandomQuote(quotes);
@@ -140,17 +140,16 @@ function printQuote() {
  * Source was linked in the Project study guide.
  */
 
- var autoRefresh;
+var autoRefresh;
 
 function autoRefresh() {
   autoRefresh = clearInterval(autoRefresh);
   autoRefresh = setInterval(printQuote, 7000);
   return [
     document.querySelector('div').innerHTML = autoRefresh,
-    printQuote(),
+    printQuote()
   ]
 }
-
 
 /***
  * click event listener for the print quote button
